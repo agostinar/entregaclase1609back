@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Realtime Products</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on("initialProducts", (products) => {
+      const productList = document.getElementById("product-list");
+      productList.innerHTML = products.map(product => `<li>${product.name} - ${product.price}</li>`).join("");
+    });
+  </script>
+</head>
+<body>
+  <h1>Realtime Products</h1>
+  <ul id="product-list">
+    <!-- Products will be updated here through WebSocket -->
+  </ul>
+</body>
+</html>
